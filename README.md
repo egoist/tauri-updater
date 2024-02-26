@@ -20,7 +20,8 @@ Update the [endpoint](https://tauri.app/v1/guides/distribution/updater#tauri-con
 https://ENDPOINT/check/GITHUB_USERNAME/GITHUB_REPO/{{target}}/{{arch}}/{{current_version}}
 ```
 
-Please replace `GITHUB_USERNAME` and `GITHUB_REPO` to the one you uploaded your release assets to.
+- Replace `ENDPOINT` with your Cloudflare Worker domain.
+- Replace `GITHUB_USERNAME` and `GITHUB_REPO` to the one you uploaded your release assets to.
 
 ## Development
 
