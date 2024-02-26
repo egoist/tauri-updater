@@ -14,7 +14,7 @@ wrangler secrets put GITHUB_TOKEN
 
 ## Configure
 
-Update the endpoint in `tauri.config.json` to:
+Update the [endpoint](https://tauri.app/v1/guides/distribution/updater#tauri-configuration) in `tauri.config.json` to:
 
 ```
 https://ENDPOINT/check/GITHUB_USERNAME/GITHUB_REPO/{{target}}/{{arch}}/{{current_version}}
