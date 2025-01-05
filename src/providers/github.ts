@@ -133,7 +133,7 @@ function checkPlatform(platform: string, arch: Arch, fileName: string) {
 
   // Windows
   if (
-    hasKeywords(fileName, ['win64', 'win32', 'windows', '.msi', '.nsis']) &&
+    hasKeywords(fileName, ['win64', 'win32', 'windows', '.msi', '.nsis', '.exe']) &&
     extension === 'zip' &&
     platform === AVAILABLE_PLATFORMS.Windows
   ) {
