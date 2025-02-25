@@ -5,12 +5,13 @@
     "deploy": "wrangler deploy --minify src/index.ts"
   },
   "dependencies": {
-    "hono": "^3.8.2",
+    "hono": "4.7.2",
     "semver": "^7.5.4"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20230914.0",
-    "@types/semver": "^7.5.4",
-    "wrangler": "^3.14.0"
-  }
+    "@cloudflare/workers-types": "4.20250224.0",
+    "@types/semver": "7.5.8",
+    "wrangler": "3.109.3"
+  },
+  "packageManager": "pnpm@9.12.1+sha512.e5a7e52a4183a02d5931057f7a0dbff9d5e9ce3161e33fa68ae392125b79282a8a8a470a51dfc8a0ed86221442eb2fb57019b0990ed24fab519bf0e1bc5ccfc4"
 }

@@ -6,6 +6,13 @@ export const getLatestRelease = async (
   username: string,
   reponame: string
 ) => {
+  const cacheKey = `release:${username}:${reponame}`
+  const cache = await bindings.KV.get(cacheKey)
+
+  if (cache) {
+    return JSON.parse(cache)
+  }
+
   const url = `https://api.github.com/repos/${username}/${reponame}/releases/latest`
   console.log('getting latest release', url)
   // Headers
@@ -28,5 +35,11 @@ export const getLatestRelease = async (
 
   if (!response.ok) return null
 
-  return response.json()
+  const text = await response.text()
+  await bindings.KV.put(cacheKey, text, {
+    // 10 minutes
+    expirationTtl: 60 * 10,
+  })
+
+  return JSON.parse(text)
 }
