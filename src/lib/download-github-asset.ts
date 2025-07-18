@@ -3,12 +3,14 @@ import { Bindings } from './bindings'
 import { USER_AGENT } from './constants'
 
 export async function fetchGitHubAsset(bindings: Bindings, asset: string) {
+  const headers = {
+    Accept: 'application/octet-stream',
+    Authorization: `token ${bindings.GITHUB_TOKEN}`,
+    'user-agent': USER_AGENT,
+  }
+  console.log('headers', headers)
   const response = await fetch(asset, {
-    headers: {
-      Accept: 'application/octet-stream',
-      Authorization: `token ${bindings.GITHUB_TOKEN}`,
-      'user-agent': USER_AGENT,
-    },
+    headers,
   })
   return response
 }
@@ -20,7 +22,7 @@ export async function downloadGitHubAsset(
 ): Promise<Response> {
   const response = await fetchGitHubAsset(bindings, asset)
   if (!response.ok) {
-    console.error('error', await response.text())
+    console.error(`failed to fetch ${asset}`, await response.text())
     return notFound()
   }
   const headers = new Headers(response.headers)
