@@ -20,6 +20,7 @@ export async function downloadGitHubAsset(
 ): Promise<Response> {
   const response = await fetchGitHubAsset(bindings, asset)
   if (!response.ok) {
+    console.error('error', await response.text())
     return notFound()
   }
   const headers = new Headers(response.headers)
