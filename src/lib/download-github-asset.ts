@@ -8,7 +8,7 @@ export async function fetchGitHubAsset(bindings: Bindings, asset: string) {
     Authorization: `token ${bindings.GITHUB_TOKEN}`,
     'user-agent': USER_AGENT,
   }
-  console.log('headers', headers)
+  console.log('headers', JSON.stringify(headers, null, 2))
   const response = await fetch(asset, {
     headers,
   })
