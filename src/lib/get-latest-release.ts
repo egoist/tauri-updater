@@ -1,4 +1,4 @@
-import { Bindings } from './bindings'
+import { Bindings, getGitHubToken } from './bindings'
 import { USER_AGENT } from './constants'
 
 export const getLatestRelease = async (
@@ -23,8 +23,9 @@ export const getLatestRelease = async (
   }
 
   // Add github token if provided
-  if (bindings.GITHUB_TOKEN && bindings.GITHUB_TOKEN.length > 0) {
-    headers.Authorization = `token ${bindings.GITHUB_TOKEN}`
+  const token = getGitHubToken(bindings, url)
+  if (token) {
+    headers.Authorization = `token ${token}`
   }
 
   // Get JSON from github

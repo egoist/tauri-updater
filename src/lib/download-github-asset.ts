@@ -1,11 +1,11 @@
 import { notFound } from './response'
-import { Bindings } from './bindings'
+import { Bindings, getGitHubToken } from './bindings'
 import { USER_AGENT } from './constants'
 
 export async function fetchGitHubAsset(bindings: Bindings, asset: string) {
   const headers = {
     Accept: 'application/octet-stream',
-    Authorization: `token ${bindings.GITHUB_TOKEN}`,
+    Authorization: `token ${getGitHubToken(bindings, asset)}`,
     'user-agent': USER_AGENT,
   }
   console.log(`headers ${JSON.stringify(headers, null, 2)}`)
