@@ -133,7 +133,14 @@ function checkPlatform(platform: string, arch: Arch, fileName: string) {
 
   // Windows
   if (
-    hasKeywords(fileName, ['win64', 'win32', 'windows', '.msi', '.nsis', '.exe']) &&
+    hasKeywords(fileName, [
+      'win64',
+      'win32',
+      'windows',
+      '.msi',
+      '.nsis',
+      '.exe',
+    ]) &&
     platform === AVAILABLE_PLATFORMS.Windows
   ) {
     if (_arch === arch) {
@@ -174,6 +181,9 @@ async function findAssetSignature(
 
   const response = await fetchGitHubAsset(bindings, foundSignature.url)
   if (!response.ok) {
+    console.error(
+      `failed to get signature for ${fileName}: ${await response.text()}`
+    )
     return null
   }
   const signature = await response.text()
